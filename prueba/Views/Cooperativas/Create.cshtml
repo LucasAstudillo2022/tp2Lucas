@@ -1,0 +1,74 @@
+﻿@model prueba.Models.Cooperativa
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Cooperativa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*ver q se hace con esto ya q deberia ser PK*@
+                @*<div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="biografia" class="control-label"></label>
+                <input asp-for="biografia" class="form-control" />
+                <span asp-validation-for="biografia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechacreacion" class="control-label"></label>
+                <input asp-for="fechacreacion" class="form-control" />
+                <span asp-validation-for="fechacreacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <img src="" id="imagen" style="max-width:50px" />
+                <label class="control-label">Seleccion Fotografia</label>
+                <input asp-for="fotocoop" type="file" accept="image/*" />
+            </div>            
+            <div class="form-group">
+                <label asp-for="mutualid" class="control-label"></label>
+                <select asp-for="mutualid" class ="form-control" asp-items="ViewBag.mutualid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="personaid" class="control-label"></label>
+                <input asp-for="personaid" class="form-control" />
+                <span asp-validation-for="personaid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<form asp-action="Importar" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="control-label">Seleccione archivo CSV para importar Cooperativas</label>
+        <input asp-for="fotocoop" type="file" id="import" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Importar" class="btn btn-primary" />
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

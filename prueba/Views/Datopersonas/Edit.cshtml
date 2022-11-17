@@ -1,0 +1,56 @@
+﻿@model prueba.Models.Datopersona
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Datopersona</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido" class="control-label"></label>
+                <input asp-for="apellido" class="form-control" />
+                <span asp-validation-for="apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fotopersona" class="control-label"></label>
+                <input asp-for="fotopersona" class="form-control" />
+                <span asp-validation-for="fotopersona" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="areaid" class="control-label"></label>
+                <input asp-for="areaid" class="form-control" />
+                <span asp-validation-for="areaid" class="text-danger"></span>
+            </div>
+            <input type="hidden" name="foto" id="foto" value="@Model.fotopersona" />
+            <img src="@(!string.IsNullOrEmpty(Model.fotopersona) ? "/images/persona"+Model.fotopersona : "")" id="imagen" class="rounded-circle" style="max-width:50px" />
+            <input type="file" name="seleccionImg" id="seleccionImg" accept="image/jpeg" />
+
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="~/js/preview.js"></script>

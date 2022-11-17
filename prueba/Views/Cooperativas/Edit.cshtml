@@ -1,0 +1,63 @@
+﻿@model prueba.Models.Cooperativa
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Cooperativa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="biografia" class="control-label"></label>
+                <input asp-for="biografia" class="form-control" />
+                <span asp-validation-for="biografia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechacreacion" class="control-label"></label>
+                <input asp-for="fechacreacion" class="form-control" />
+                <span asp-validation-for="fechacreacion" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="mutualid" class="control-label"></label>
+                <select asp-for="mutualid" class="form-control" asp-items="ViewBag.mutualid"></select>
+                <span asp-validation-for="mutualid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="personaid" class="control-label"></label>
+                <input asp-for="personaid" class="form-control"  />
+                <span asp-validation-for="personaid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="foto" id="foto" value="@Model.fotocoop" />
+                <img src="@(!string.IsNullOrEmpty(Model.fotocoop) ? "/images/cooperativa"+Model.fotocoop : "")" id="imagen" class="rounded-circle" style="max-width:50px" />
+                <input type="file" name="seleccionImg" id="seleccionImg" accept="image/jpeg" />              
+            </div>
+            <input type="hidden" asp-for="fotocoop" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/js/preview.js"></script>
